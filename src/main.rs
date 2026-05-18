@@ -6,12 +6,20 @@
 const COLORS:[char;4]=['r','y','g','b']; //colors of the pegs
  
 fn main() {
+//    let mut guess:Vec<&char>;
+    let fullguess="b,g,y,r";
+
+    let mut guess:Vec<&str>=fullguess.split(',').collect(); 
     println!("Hello, world!");
     for element in COLORS {
         println!("{} is {}",element,color_to_number(element.to_ascii_lowercase()));
     }
     let test='C';
     println!("{} is {}",test, test.to_ascii_lowercase());
+
+    for element in guess {
+        println!("{} is {}",element,color_to_number(element.chars().next().unwrap()));
+    }
 }
 
 //Returns the array index matching to the peg color. 

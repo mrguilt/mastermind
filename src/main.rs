@@ -7,6 +7,7 @@ use std::cmp::Ordering;
 use rand::Rng; 
 
 const COLORS:[char;4]=['r','y','g','b']; //colors of the pegs
+const MAXGUESS:u8=10;
  
 fn main() {
     println!("Mastermind for Rust");
@@ -16,10 +17,11 @@ fn main() {
     printpegs(targetpegs); //REMOVE ME FOR FINAL I will want to see this to debug. 
     println!("\n");
 
+    let mut guesscount=1;
     loop { 
         let mut guess=String::new();
 
-        println!("Enter your guess: ");
+        println!("Guess #{}. Enter your guess: ",guesscount);
         io::stdin()
         .read_line(&mut guess)
         .expect("Failed to read line");
@@ -36,15 +38,26 @@ fn main() {
         } else {
             let mut number=0;
             for element in mypegs {
-//                println!("{} is {}",element,color_to_number(element.chars().next().unwrap()));
                 //Convert the guess to an array of numbers. 
                 guesspegs[number]=color_to_number(element.chars().next().unwrap());
                 number+=1;
             }
+            guesscount+=1;
         }
         print!("Your guess: ");
         printpegs(guesspegs);
         println!("");
+
+        if guesscount>MAXGUESS {
+            println!("\nNo guesses remain!");
+            print!("The actual result: ");
+            printpegs(targetpegs);
+            println!("");
+            break;
+        }
+
+        println!("\t{} guesses remain.",(MAXGUESS-guesscount));
+
     }
 
 }

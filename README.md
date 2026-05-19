@@ -2,7 +2,7 @@
 
 This is the classic game Mastermind, written in Rust. I'm doing this as a programming exercise (much the same way, in college, I wrote it in Pascal). 
 
-## Basic Play
+## Basic Rules
 
 The goal is to guess the sequence of colored pegs the computer picks. The pegs are:
 

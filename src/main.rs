@@ -3,9 +3,8 @@
 // Created by I. Charles Barilleaux
 // Created on 2026-05-18
 use std::io;
-
-use std::cmp::Ordering; //Listing 2-4
-use rand::Rng; //Listing 2-3
+use std::cmp::Ordering; 
+use rand::Rng; 
 
 const COLORS:[char;4]=['r','y','g','b']; //colors of the pegs
  
@@ -83,14 +82,3 @@ fn printpegs(thesepegs:[u8;4]) {
     }
 }
 
-//This is my test generate target. I'm keeping it until I get the main set.
-fn test_generate_target() {
-    for number in (0..4) {
-        let peg = rand::thread_rng().gen_range(0,4);
-        print!("{}",COLORS[peg]);
-        if number<3 {
-                print!(",");
-        }
-    }
-    print!("\n");
-}

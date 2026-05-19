@@ -26,19 +26,26 @@ fn main() {
         .expect("Failed to read line");
 
         let mut fullguess=guess.trim();
-        if fullguess.trim() == "quit" {
+        if guess.trim() == "quit" {
             break;
         }
 
-        let mut guess:Vec<&str>=fullguess.split(',').collect(); 
-
-        if guess.len()!=4 {
+        let mut guesspegs=[0;4];
+        let mut mypegs:Vec<&str>=fullguess.split(',').collect(); 
+        if mypegs.len()!=4 {
             println!("INCORRECT GUESS FORMAT!!! Please enter 4 \"pegs\" (p,p,p,p).");
         } else {
-            for element in guess {
-                println!("{} is {}",element,color_to_number(element.chars().next().unwrap()));
+            let mut number=0;
+            for element in mypegs {
+//                println!("{} is {}",element,color_to_number(element.chars().next().unwrap()));
+                //Convert the guess to an array of numbers. 
+                guesspegs[number]=color_to_number(element.chars().next().unwrap());
+                number+=1;
             }
         }
+        print!("Your guess: ");
+        printpegs(guesspegs);
+        println!("");
     }
 
 }

@@ -12,12 +12,9 @@ const COLORS:[char;4]=['r','y','g','b']; //colors of the pegs
 fn main() {
     println!("Mastermind for Rust");
     println!("========== === ====\n");
-// Set what the "target" peg position
     print!("Target:\t");
     let targetpegs=generate_target(); //Set the goal
-    for element in targetpegs {
-        print!("{}:",COLORS[element as usize]);
-    }
+    printpegs(targetpegs);
     println!("\n");
 
     loop { 
@@ -34,7 +31,6 @@ fn main() {
         }
 
         let mut guess:Vec<&str>=fullguess.split(',').collect(); 
-//        println!("length: {}",guess.len());
 
         if guess.len()!=4 {
             println!("INCORRECT GUESS FORMAT!!! Please enter 4 \"pegs\" (p,p,p,p).");
@@ -68,6 +64,16 @@ fn generate_target() -> [u8;4] {
         pegs[number] = rand::thread_rng().gen_range(0,4);
     }
     pegs
+}
+
+//Takes an array of peg positions and prints them column separated (no newline)
+fn printpegs(thesepegs:[u8;4]) {
+    for number in (0..4) {
+        print!("{}",COLORS[thesepegs[number] as usize]);
+         if number<3 {
+                print!(",");
+        }
+    }
 }
 
 //This is my test generate target. I'm keeping it until I get the main set.

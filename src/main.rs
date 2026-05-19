@@ -10,16 +10,17 @@ use rand::Rng; //Listing 2-3
 const COLORS:[char;4]=['r','y','g','b']; //colors of the pegs
  
 fn main() {
-//    let mut rng = rand::thread_rng(); // Get a thread-local random number generator
-
     println!("Mastermind for Rust");
     println!("========== === ====\n");
+// Set what the "target" peg position
     print!("Target:\t");
-    generate_target();
+    let targetpegs=generate_target(); //Set the goal
+    for element in targetpegs {
+        print!("{}:",COLORS[element as usize]);
+    }
     println!("\n");
-    
+
     loop { 
-//        let mut fullguess=String::new();
         let mut guess=String::new();
 
         println!("Enter your guess: ");
@@ -60,9 +61,17 @@ fn color_to_number (x: char) -> u8 {
     outcome
 }
 
-//rand::thread_rng().gen_range(1..=100);
+// This will generate the target. 
+fn generate_target() -> [u8;4] {
+    let mut pegs:[u8;4]=[0,0,0,0];
+    for number in (0..4) {
+        pegs[number] = rand::thread_rng().gen_range(0,4);
+    }
+    pegs
+}
 
-fn generate_target() {
+//This is my test generate target. I'm keeping it until I get the main set.
+fn test_generate_target() {
     for number in (0..4) {
         let peg = rand::thread_rng().gen_range(0,4);
         print!("{}",COLORS[peg]);

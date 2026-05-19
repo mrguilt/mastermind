@@ -1,6 +1,6 @@
 # Mastermind
 
-This is the classic game Mastermind, written in Rust. I'm doing this as a programming exercise (much the same way, in college, I wrote it in Pascal). 
+This is the classic game Mastermind, written in Rust. I'm doing this as a programming exercise (much the same way, in college, I wrote it in [Pascal](https://en.wikipedia.org/wiki/Pascal_(programming_language))). 
 
 ## Basic Rules
 

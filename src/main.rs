@@ -13,7 +13,7 @@ fn main() {
     println!("========== === ====\n");
     print!("Target:\t");
     let targetpegs=generate_target(); //Set the goal
-    printpegs(targetpegs);
+    printpegs(targetpegs); //REMOVE ME FOR FINAL I will want to see this to debug. 
     println!("\n");
 
     loop { 

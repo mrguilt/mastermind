@@ -95,3 +95,32 @@ fn printpegs(thesepegs:[u8;4]) {
     }
 }
 
+fn checkguess(guesspegs:[u8;4],goalpegs:[u8;4]) {
+    let mut checked:[bool;4]=[false;4];
+    //let mut results:[u8;2]=[0,2];
+    let mut blackpeg=0;
+    let mut whitepeg=0;
+
+    let mut checking:u8;
+    for checking in [0..4] {
+        let mut control:u8=0;
+        loop {
+            if checked[control as u8]==false {
+                if guesspegs[checking]==goalpegs[control] {
+                    if checking==control {
+                        blackpeg+=1;
+                    } else {
+                        ehitepeg+=1;
+                    }
+                    checked[control as usize]==true;
+                    break;
+                } 
+            }
+            control+=1;
+            if control>(goalpegs.len() as u8) { 
+                break;
+            }
+        }
+    }
+}
+

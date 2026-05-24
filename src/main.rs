@@ -58,6 +58,10 @@ fn main() {
 
         println!("\t{} guesses remain.",(MAXGUESS-guesscount));
 
+        println!("\n\n------------");
+        println!("working my way through the comparison function...");
+        checkguess(guesspegs,targetpegs);
+
     }
 
 }
@@ -101,26 +105,30 @@ fn checkguess(guesspegs:[u8;4],goalpegs:[u8;4]) {
     let mut blackpeg=0;
     let mut whitepeg=0;
 
-    let mut checking:u8;
-    for checking in [0..4] {
-        let mut control:u8=0;
-        loop {
-            if checked[control as u8]==false {
-                if guesspegs[checking]==goalpegs[control] {
-                    if checking==control {
-                        blackpeg+=1;
-                    } else {
-                        ehitepeg+=1;
-                    }
-                    checked[control as usize]==true;
-                    break;
-                } 
+    println!("In the function");
+
+    let mut guesscounter=0;
+    'guess_count: loop {
+        let mut targetcount=0;
+
+        println!("Checking Guess Element {}: {}",targetcount,guesspegs[targetcount]);
+        'target_count: loop {
+            print!("Goal Element: {}\tTarget: {}\tGuess: {}",targetcount,goalpegs[targetcount],guesspegs[guesscounter]);
+            if(goalpegs[targetcount]==guesspegs[guesscounter]) {
+                println!("\tMatch! (black peg)");
+            } else {
+                println!("\tNo match");
             }
-            control+=1;
-            if control>(goalpegs.len() as u8) { 
-                break;
+           targetcount+=1;
+            if targetcount>=goalpegs.len() {
+                break 'target_count;
             }
         }
+        guesscounter+=1;
+        if guesscounter>=guesspegs.len() {
+            break 'guess_count;
+        }
     }
+    println!("Leaving function...\n");
 }
 

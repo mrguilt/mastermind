@@ -1,14 +1,17 @@
 // Mastermind
 // A Rust implementation of the game Mastermind.
+// Basically an exercise to learn rust.
 // Created by I. Charles Barilleaux
 // Created on 2026-05-18
 use std::io;
-use std::cmp::Ordering; 
+//use std::cmp::Ordering; //removed per warning
 use rand::Rng; 
+
+const DEBUG:bool=true;
+
 
 const COLORS:[char;4]=['r','y','g','b']; //colors of the pegs
 const MAXGUESS:u8=10;
-const DEBUG:bool=true;
  
 fn main() {
     println!("Mastermind for Rust");
@@ -31,13 +34,17 @@ fn main() {
         .read_line(&mut guess)
         .expect("Failed to read line");
 
-        let mut fullguess=guess.trim();
-        if guess.trim() == "quit" {
+//        let mut fullguess=guess.trim();
+        let fullguess=guess.trim(); //removed mut per warning
+
+        if fullguess == "quit"||fullguess == "q" {
             break;
         }
 
         let mut guesspegs=[0;4];
-        let mut mypegs:Vec<&str>=fullguess.split(',').collect(); 
+//        let mut mypegs:Vec<&str>=fullguess.split(',').collect(); 
+        let mypegs:Vec<&str>=fullguess.split(',').collect(); //removed mut per warning
+
         if mypegs.len()!=4 {
             println!("INCORRECT GUESS FORMAT!!! Please enter 4 \"pegs\" (p,p,p,p).");
         } else {
@@ -139,7 +146,9 @@ fn checkguess(guesspegs:[u8;4],goalpegs:[u8;4]) {
             break 'guess_count;
         }
     }
-    println!("Results:");
-    println!("\tBlack Pegs: {}\tWhite Pegs: {}",results[0],results[1]);
+    if DEBUG==true {
+        println!("Results:");
+        println!("\tBlack Pegs: {}\tWhite Pegs: {}",results[0],results[1]);
+    }
 }
 

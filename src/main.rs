@@ -61,6 +61,7 @@ fn main() {
         println!("\n\n------------");
         println!("working my way through the comparison function...");
         checkguess(guesspegs,targetpegs);
+        println!("\n\n------------");
 
     }
 
@@ -110,23 +111,23 @@ fn checkguess(guesspegs:[u8;4],goalpegs:[u8;4]) {
     'guess_count: loop {
         let mut targetcount=0;
 
-        println!("Checking Guess Element {}: {}",targetcount,guesspegs[targetcount]);
+//        println!("Checking Guess Element {}: {}",targetcount,guesspegs[targetcount]);
         'target_count: loop {
-            print!("Goal Element: {}\tTarget: {}\tGuess: {}",targetcount,goalpegs[targetcount],guesspegs[guesscounter]);
+//            print!("Goal Element: {}\tTarget: {}\tGuess: {}",targetcount,goalpegs[targetcount],guesspegs[guesscounter]);
             if(checked[targetcount]==false) {
                 if(goalpegs[targetcount]==guesspegs[guesscounter]) {
                     checked[targetcount]=true;
                     if targetcount==guesscounter {
-                        println!("\tMatch! (black peg)");
+//                        println!("\tMatch! (black peg)");
                         blackpeg+=1;
                     } else {
-                        println!("\tMatch (white peg)");
+//                        println!("\tMatch (white peg)");
                         whitepeg+=1;
                    }
                    targetcount+=1;
                     break 'target_count;
                 } else {
-                    println!("\tNo match");
+//                    println!("\tNo match");
                 }
             }
             targetcount+=1;
@@ -141,6 +142,6 @@ fn checkguess(guesspegs:[u8;4],goalpegs:[u8;4]) {
     }
     println!("Results:");
     println!("\tBlack Pegs: {}\tWhite Pegs: {}",blackpeg,whitepeg);
-    println!("Leaving function...\n");
+//    println!("Leaving function...\n");
 }
 

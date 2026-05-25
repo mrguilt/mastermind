@@ -8,18 +8,23 @@ use rand::Rng;
 
 const COLORS:[char;4]=['r','y','g','b']; //colors of the pegs
 const MAXGUESS:u8=10;
+const DEBUG:bool=true;
  
 fn main() {
     println!("Mastermind for Rust");
     println!("========== === ====\n");
-    print!("Target:\t");
     let targetpegs=generate_target(); //Set the goal
-    printpegs(targetpegs); //REMOVE ME FOR FINAL I will want to see this to debug. 
-    println!("\n");
 
     let mut guesscount=1;
     loop { 
         let mut guess=String::new();
+
+        if DEBUG==true {
+        //See what the target is each loop, so I can troubleshoot
+            print!("Target:\t");
+            printpegs(targetpegs); //REMOVE ME FOR FINAL I will want to see this to debug. 
+            println!("\n");
+        }
 
         println!("Guess #{}. Enter your guess: ",guesscount);
         io::stdin()
